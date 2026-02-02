@@ -7,7 +7,7 @@ This project returns basic JSON data for portfolio info.
 
 ## 🚀 Features
 
-- ✅ Serverless API using `@vercel/node`
+- ✅ API using `@vercel/node`
 - ✅ TypeScript support
 - ✅ Returns portfolio info: name, author, message, timestamp
 - ✅ Ready for deployment on **Vercel**
