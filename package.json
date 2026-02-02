@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "@vercel/node": "4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
