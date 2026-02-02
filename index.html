@@ -56,7 +56,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none;
+            pointer-events: none; /* Keep this as none */
         }
 
         /* JOSS Background Animation (Fallback) */
@@ -73,6 +73,7 @@
                 radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
                 linear-gradient(135deg, #0a0a0f 0%, #14142e 50%, #0a0a0f 100%);
             animation: backgroundMatrix 20s linear infinite;
+            pointer-events: none;
         }
 
         @keyframes backgroundMatrix {
@@ -114,6 +115,7 @@
             border-radius: 50px;
             border: 1px solid rgba(0, 219, 222, 0.2);
             box-shadow: var(--neon-glow);
+            cursor: pointer;
         }
 
         .logo-container:hover {
@@ -210,7 +212,7 @@
             margin: 0 auto;
             padding: 120px 30px 60px;
             position: relative;
-            z-index: 1;
+            z-index: 10; /* Increased z-index */
         }
 
         /* Header Section */
@@ -222,6 +224,8 @@
             align-items: center;
             padding: 40px 20px;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         .profile-container {
@@ -229,6 +233,7 @@
             margin-bottom: 60px;
             width: 100%;
             position: relative;
+            z-index: 10;
         }
 
         .profile-image {
@@ -270,6 +275,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 10;
         }
 
         .typing-text {
@@ -368,6 +375,7 @@
             box-shadow: 
                 0 10px 30px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 10; /* Added z-index */
         }
 
         .ui-box::before {
@@ -530,6 +538,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
+            position: relative;
+            z-index: 20; /* Increased z-index */
         }
 
         .skill-item {
@@ -547,6 +557,8 @@
             overflow: hidden;
             aspect-ratio: 1;
             min-height: 150px;
+            z-index: 20; /* Increased z-index */
+            cursor: pointer;
         }
 
         .skill-item::before {
@@ -603,6 +615,8 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 25px;
+            position: relative;
+            z-index: 20; /* Increased z-index */
         }
 
         .social-link-item {
@@ -621,6 +635,8 @@
             overflow: hidden;
             aspect-ratio: 1;
             min-height: 150px;
+            z-index: 20; /* Increased z-index */
+            cursor: pointer;
         }
 
         .social-link-item::before {
@@ -1153,6 +1169,7 @@
             font-size: 16px;
             opacity: 0.9;
             position: relative;
+            z-index: 10;
         ">
             <div class="footer-logo" style="
                 font-family: 'Orbitron', sans-serif;
@@ -1553,6 +1570,27 @@
             }
         }
 
+        // ========== TEST SOCIAL LINKS ==========
+        function testSocialLinks() {
+            const socialLinks = document.querySelectorAll('.social-link-item');
+            
+            socialLinks.forEach(link => {
+                // Remove any existing event listeners
+                const newLink = link.cloneNode(true);
+                link.parentNode.replaceChild(newLink, link);
+                
+                // Add new click handler for testing
+                newLink.addEventListener('click', function(e) {
+                    console.log('Social link clicked:', this.href);
+                    // Allow default behavior (navigation)
+                    return true;
+                });
+                
+                // Also ensure pointer events are enabled
+                newLink.style.pointerEvents = 'auto';
+            });
+        }
+
         // ========== INITIALIZE EVERYTHING ==========
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize background systems
@@ -1569,6 +1607,9 @@
             
             // Setup music player
             setupMusicPlayer();
+            
+            // Test social links
+            testSocialLinks();
             
             // Add event listeners
             window.addEventListener('scroll', handleScrollAnimations);
@@ -1596,6 +1637,13 @@
                         console.log("Play error on screen click:", error);
                     });
                 }
+            });
+
+            // Debug: Log when social links are clicked
+            document.querySelectorAll('.social-link-item').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    console.log('Clicked social link:', this.href);
+                });
             });
         });
     </script>
