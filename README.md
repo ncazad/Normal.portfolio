@@ -1,6 +1,6 @@
 # 🌟 Portfolio Simple
 
-A **simple portfolio backend API** built with **TypeScript** and **Vercel Serverless Functions**.  
+A **simple portfolio backend API** built with **TypeScript** and **Vercel**.  
 This project returns basic JSON data for portfolio info.
 
 ---
